@@ -1,11 +1,8 @@
-import React, { Component } from 'react'
+import React, { useEffect } from "react";
 
-export default class Order extends Component {
-    render() {
-        return (
-            <div>
-                
-            </div>
-        )
-    }
+export default function Order({ activePage, changeActivePage }) {
+    useEffect(() => {
+        changeActivePage("Order");
+    });
+    return <div className="container">Order</div>;
 }
