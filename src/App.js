@@ -5,9 +5,21 @@ import Order from "./Order";
 
 function App() {
 	const [activePage, setActivePage] = useState("Home");
+	const [loading, setLoading] = useState(true);
 
 	function changeActivePage(newValue) {
 		setActivePage(newValue);
+	}
+	if (loading) {
+		return (
+			<div className="h-100 d-flex justify-content-center align-items-center">
+				<div className="text-center my-auto">
+					<div className="h-100 spinner-border text-primary my-auto" role="status">
+						<span className="visually-hidden">Loading...</span>
+					</div>
+				</div>
+			</div>
+		);
 	}
 	return (
 		<Router>
