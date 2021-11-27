@@ -1,8 +1,54 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Prismic from "@prismicio/client";
+import { Date, Link, RichText } from "prismic-reactjs";
+import Pizza from "./Pizza";
 
 export default function Order({ activePage, changeActivePage }) {
-    useEffect(() => {
-        changeActivePage("Order");
-    });
-    return <div className="container">Order</div>;
+	const [pizzas, setPizzas] = useState([]);
+	const [toppings, setToppings] = useState([]);
+
+	const apiEndpoint = "https://faber-pizza.prismic.io/api/v2";
+	const accessToken = "MC5ZYUp2YXhNQUFCNEFyQkx6.HUZPJe-_vVRY77-977-9aS_vv70_77-977-9Xe-_ve-_vV0xfSF8Qu-_ve-_ve-_vU_vv70HJnY"; // This is where you would add your access token for a Private repository
+
+	const Client = Prismic.client(apiEndpoint, { accessToken });
+
+	useEffect(() => {
+		const fetchPizzaData = async () => {
+			const response = await Client.query(Prismic.Predicates.at("document.type", "pizza"));
+			if (response) {
+				console.log(response.results);
+				setPizzas(response.results);
+			}
+		};
+		fetchPizzaData();
+
+		const fetchToppingData = async () => {
+			const response = await Client.query(Prismic.Predicates.at("document.type", "topping"));
+			if (response) {
+				console.log(response.results);
+				setToppings(response.results);
+			}
+		};
+		fetchToppingData();
+		changeActivePage("Order");
+	}, []);
+
+	return (
+		<>
+			<h2 className="title">Order</h2>
+			<div className="row">
+				<div className="col">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+					magna aliqua. Neque laoreet suspendisse interdum consectetur libero id faucibus nisl tincidunt. Cursus risus
+					at ultrices mi. Diam phasellus vestibulum lorem sed risus ultricies tristique nulla. Natoque penatibus et
+					magnis dis parturient montes. Justo donec enim diam vulputate. Aliquet lectus proin nibh nisl condimentum id.
+				</div>
+			</div>
+			<div className="row">
+				{pizzas.map((p) => {
+					return <Pizza name={p.data.pizzaname[0].text} />;
+				})}
+			</div>
+		</>
+	);
 }

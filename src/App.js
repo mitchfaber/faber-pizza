@@ -46,8 +46,22 @@ function App() {
 			</div>
 
 			<Routes>
-				<Route path="/Order" element={<Order activePage={activePage} changeActivePage={changeActivePage} />} />
-				<Route path="/" element={<Home activePage={activePage} changeActivePage={changeActivePage} />} />
+				<Route
+					path="/Order"
+					element={
+						<div className="container">
+							<Order activePage={activePage} changeActivePage={changeActivePage} />
+						</div>
+					}
+				/>
+				<Route
+					path="/"
+					element={
+						<div className="container">
+							<Home activePage={activePage} changeActivePage={changeActivePage} />
+						</div>
+					}
+				/>
 			</Routes>
 		</Router>
 	);

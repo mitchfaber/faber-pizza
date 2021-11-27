@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import veg from "./featured/vegeterian.jpg";
 import meat from "./featured/meat.jpg";
 import classic from "./featured/classic.jpg";
@@ -8,7 +9,7 @@ export default function Home({ activePage, changeActivePage }) {
 		changeActivePage("Home");
 	});
 	return (
-		<div className="container">
+		<>
 			<h2 className="title">Home</h2>
 			<div className="row">
 				<div className="col">
@@ -28,9 +29,9 @@ export default function Home({ activePage, changeActivePage }) {
 							<p class="card-text">
 								Some quick example text to build on the card title and make up the bulk of the card's content.
 							</p>
-							<a href="#" class="btn btn-primary">
+							<Link to="order/meat" class="btn btn-primary">
 								Go somewhere
-							</a>
+							</Link>
 						</div>
 					</div>
 				</div>
@@ -42,9 +43,9 @@ export default function Home({ activePage, changeActivePage }) {
 							<p class="card-text">
 								Some quick example text to build on the card title and make up the bulk of the card's content.
 							</p>
-							<a href="#" class="btn btn-primary">
+							<Link to="order/classic" class="btn btn-primary">
 								Go somewhere
-							</a>
+							</Link>
 						</div>
 					</div>
 				</div>
@@ -56,13 +57,13 @@ export default function Home({ activePage, changeActivePage }) {
 							<p class="card-text">
 								Some quick example text to build on the card title and make up the bulk of the card's content.
 							</p>
-							<a href="#" class="btn btn-primary">
+							<Link to="order/veg" class="btn btn-primary">
 								Go somewhere
-							</a>
+							</Link>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }
