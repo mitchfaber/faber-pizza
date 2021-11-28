@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./Home";
 import Order from "./Order";
+import Pizza from "./Pizza";
 
 function App() {
 	const [activePage, setActivePage] = useState("Home");
@@ -51,6 +52,14 @@ function App() {
 					element={
 						<div className="container">
 							<Order activePage={activePage} changeActivePage={changeActivePage} />
+						</div>
+					}
+				/>
+				<Route
+					path="/order/:pizza/:id"
+					element={
+						<div className="container">
+							<Pizza />
 						</div>
 					}
 				/>

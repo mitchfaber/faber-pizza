@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Prismic from "@prismicio/client";
-import { Date, RichText } from "prismic-reactjs";
-import Pizza from "./Pizza";
 
 export default function Order({ activePage, changeActivePage }) {
 	const [pizzas, setPizzas] = useState([]);
-	const [toppings, setToppings] = useState([]);
 
 	const apiEndpoint = "https://faber-pizza.prismic.io/api/v2";
 	const accessToken = "MC5ZYUp2YXhNQUFCNEFyQkx6.HUZPJe-_vVRY77-977-9aS_vv70_77-977-9Xe-_ve-_vV0xfSF8Qu-_ve-_ve-_vU_vv70HJnY"; // This is where you would add your access token for a Private repository
@@ -22,15 +19,6 @@ export default function Order({ activePage, changeActivePage }) {
 			}
 		};
 		fetchPizzaData();
-
-		const fetchToppingData = async () => {
-			const response = await Client.query(Prismic.Predicates.at("document.type", "topping"));
-			if (response) {
-				console.log(response.results);
-				setToppings(response.results);
-			}
-		};
-		fetchToppingData();
 		changeActivePage("Order");
 	}, []);
 
@@ -52,9 +40,9 @@ export default function Order({ activePage, changeActivePage }) {
 						<div className="col">
 							<div className="card">
 								<div className="card-body">
-									<Pizza name={p.data.pizzaname[0].text} />
+									<div className="card-title">{p.data.pizzaname[0].text}</div>
 									<p className="card-text">{p.data.description[0].text}</p>
-									<Link to="/" className="btn btn-primary">
+									<Link to={"/order/" + p.data.pizzaname[0].text + "/" + p.uid} className="btn btn-primary">
 										Order Now
 									</Link>
 								</div>
