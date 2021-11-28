@@ -9,15 +9,31 @@ export default function Pizza() {
 	const [toppings, setToppings] = useState([]);
 	let { pizza, id } = useParams();
 	useEffect(() => {
+		const fetchToppingData = async () => {
+			const response = await Client.query([Prismic.Predicates.at("my.topping.uid", id)]);
+			if (response) {
+				console.log(response.results[0].data.body[0].items);
+				// setToppings(response.results.data.body);
+			}
+		};
 		const fetchPizzaData = async () => {
 			const response = await Client.query([Prismic.Predicates.at("my.pizza.uid", id)]);
 			if (response) {
-				console.log(response.results);
-				setToppings();
+				console.log(response.results[0].data.body[0].items);
+				// setToppings(response.results.data.body);
 			}
 		};
 		fetchPizzaData();
 	}, []);
 
-	return <div className="card-title">yum {pizza}</div>;
+	return (
+		<div className="d-flex justify-content-center">
+			<div className="card">
+				<div className="card-body">
+					<h2 className="card-title">{pizza}</h2>
+					{/* <div className="card-text">{toppings.map((t) => {})}</div> */}
+				</div>
+			</div>
+		</div>
+	);
 }
