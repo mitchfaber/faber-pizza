@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Prismic from "@prismicio/client";
-import { Date, Link, RichText } from "prismic-reactjs";
+import { Date, RichText } from "prismic-reactjs";
 import Pizza from "./Pizza";
 
 export default function Order({ activePage, changeActivePage }) {
@@ -44,9 +45,22 @@ export default function Order({ activePage, changeActivePage }) {
 					magnis dis parturient montes. Justo donec enim diam vulputate. Aliquet lectus proin nibh nisl condimentum id.
 				</div>
 			</div>
+			<hr />
 			<div className="row">
 				{pizzas.map((p) => {
-					return <Pizza name={p.data.pizzaname[0].text} />;
+					return (
+						<div className="col">
+							<div className="card">
+								<div className="card-body">
+									<Pizza name={p.data.pizzaname[0].text} />
+									<p className="card-text">{p.data.description[0].text}</p>
+									<Link to="/" className="btn btn-primary">
+										Order Now
+									</Link>
+								</div>
+							</div>
+						</div>
+					);
 				})}
 			</div>
 		</>
