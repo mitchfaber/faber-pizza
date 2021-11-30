@@ -29,8 +29,8 @@ export default function Home({ activePage, changeActivePage }) {
 							<p class="card-text">
 								Some quick example text to build on the card title and make up the bulk of the card's content.
 							</p>
-							<Link to="order/meat" className="btn btn-primary">
-								Go somewhere
+							<Link to="order/The Carnivore/2" className="btn btn-primary">
+								Order Now
 							</Link>
 						</div>
 					</div>
@@ -43,8 +43,8 @@ export default function Home({ activePage, changeActivePage }) {
 							<p class="card-text">
 								Some quick example text to build on the card title and make up the bulk of the card's content.
 							</p>
-							<Link to="order/classic" className="btn btn-primary">
-								Go somewhere
+							<Link to="order/The Classic/1" className="btn btn-primary">
+								Order Now
 							</Link>
 						</div>
 					</div>
@@ -57,8 +57,8 @@ export default function Home({ activePage, changeActivePage }) {
 							<p class="card-text">
 								Some quick example text to build on the card title and make up the bulk of the card's content.
 							</p>
-							<Link to="order/The Vegetarian" className="btn btn-primary">
-								Go somewhere
+							<Link to="order/The Vegetarian/4" className="btn btn-primary">
+								Order Now
 							</Link>
 						</div>
 					</div>
