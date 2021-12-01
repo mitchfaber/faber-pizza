@@ -13,9 +13,8 @@ function App() {
 		setActivePage(newValue);
 	}
 
-	function updateSelection(myPizza, myToppings) {
-		setOrderSelection({ myPizza, myToppings });
-		console.log(orderSelection);
+	function updateSelection(myPizza, id, myToppings) {
+		setOrderSelection({ myPizza, id, myToppings });
 	}
 
 	return (

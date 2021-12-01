@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Route, useRouteMatch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Prismic from "@prismicio/client";
 
 export default function Order({ activePage, changeActivePage }) {
@@ -14,7 +14,6 @@ export default function Order({ activePage, changeActivePage }) {
 		const fetchPizzaData = async () => {
 			const response = await Client.query(Prismic.Predicates.at("document.type", "pizza"));
 			if (response) {
-				console.log(response.results);
 				setPizzas(response.results);
 			}
 		};
@@ -27,17 +26,17 @@ export default function Order({ activePage, changeActivePage }) {
 			<h2 className="title">Order</h2>
 			<div className="row">
 				<div className="col">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-					magna aliqua. Neque laoreet suspendisse interdum consectetur libero id faucibus nisl tincidunt. Cursus risus
-					at ultrices mi. Diam phasellus vestibulum lorem sed risus ultricies tristique nulla. Natoque penatibus et
-					magnis dis parturient montes. Justo donec enim diam vulputate. Aliquet lectus proin nibh nisl condimentum id.
+					Pizza for every occasion! Pick one, edit it (or don’t) and order! So easy! Neque laoreet suspendisse interdum
+					consectetur libero id faucibus nisl tincidunt. Cursus risus at ultrices mi. Diam phasellus vestibulum lorem
+					sed risus ultricies tristique nulla. Natoque penatibus et magnis dis parturient montes. Justo donec enim diam
+					vulputate. Aliquet lectus proin nibh nisl condimentum id.
 				</div>
 			</div>
 			<hr />
-			<div className="row">
+			<div className="container row">
 				{pizzas.map((p) => {
 					return (
-						<div className="col">
+						<div key={p.uid} className="col-xs-1 col-md-6">
 							<div className="card">
 								<div className="card-body">
 									<div className="card-title">{p.data.pizzaname[0].text}</div>

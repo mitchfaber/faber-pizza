@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link, Route } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Prismic from "@prismicio/client";
 import Topping from "./Topping";
 
@@ -14,7 +14,7 @@ export default function Pizza({ updateSelection }) {
 		const fetchPizzaData = async () => {
 			const response = await Client.query([Prismic.Predicates.at("my.pizza.uid", id)]);
 			if (response) {
-				console.log(response.results[0].data.body[0].items);
+				setPizzaDesc(response.results[0].data.description[0].text);
 				response.results[0].data.body[0].items.map((t) => {
 					fetchToppingData(t.pizzatopping.uid);
 				});
@@ -24,7 +24,7 @@ export default function Pizza({ updateSelection }) {
 	}, []);
 
 	useEffect(() => {
-		updateSelection(pizza, toppings);
+		updateSelection(pizza, id, toppings);
 	}, [toppings]);
 
 	function toggleTopping(name) {
@@ -37,7 +37,6 @@ export default function Pizza({ updateSelection }) {
 	async function fetchToppingData(tid) {
 		const response = await Client.query([Prismic.Predicates.at("my.topping.uid", tid)]);
 		if (response.results) {
-			console.log(response.results);
 			setToppings((prevToppings) => {
 				if (pizza === "Make your own") {
 					return [...prevToppings, { name: response.results[0].data.toppingname[0].text, checked: false }];
@@ -54,12 +53,18 @@ export default function Pizza({ updateSelection }) {
 				<div className="card-body">
 					<h2 className="card-title">{pizza}</h2>
 					<div className="card-text">
-						<p></p>
-						<ul className="list-group">
-							{toppings.map((t) => {
-								return <Topping name={t.name} checked={t.checked} toggleTopping={toggleTopping} />;
-							})}
-						</ul>
+						<div>
+							<p>{pizzaDesc}</p>
+							<ul className="list-group">
+								{toppings.map((t) => {
+									return (
+										<div key={t.name}>
+											<Topping name={t.name} checked={t.checked} toggleTopping={toggleTopping} />
+										</div>
+									);
+								})}
+							</ul>
+						</div>
 					</div>
 					<Link to={"/order/confirm"} className="btn btn-primary">
 						Next

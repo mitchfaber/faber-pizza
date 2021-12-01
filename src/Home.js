@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import veg from "./featured/vegeterian.jpg";
 import meat from "./featured/meat.jpg";
 import classic from "./featured/classic.jpg";
 
-export default function Home({ activePage, changeActivePage }) {
+export default function Home({ changeActivePage }) {
 	useEffect(() => {
 		changeActivePage("Home");
 	});
@@ -22,12 +22,14 @@ export default function Home({ activePage, changeActivePage }) {
 			<hr />
 			<div className="row">
 				<div className="col">
-					<div class="card">
-						<img src={meat} class="card-img-top img-thumbnail" alt="meat Pizza" />
-						<div class="card-body">
-							<h5 class="card-title">The Carnivore</h5>
-							<p class="card-text">
-								Some quick example text to build on the card title and make up the bulk of the card's content.
+					<div className="card">
+						<img src={meat} className="card-img-top img-thumbnail" alt="meat Pizza" />
+						<div className="card-body">
+							<h5 className="card-title">The Carnivore</h5>
+							<p className="card-text">
+								The best. Bacon, Sausage, Salami, and of course pepperoni. One of the best options on here. You're
+								feeling hungry, but not for any kind of plant. You just want to devour delicious meat. This is the
+								pizza for you!
 							</p>
 							<Link to="order/The Carnivore/2" className="btn btn-primary">
 								Order Now
@@ -36,12 +38,12 @@ export default function Home({ activePage, changeActivePage }) {
 					</div>
 				</div>
 				<div className="col">
-					<div class="card">
-						<img src={classic} class="card-img-top img-thumbnail" alt="classic pizza" />
-						<div class="card-body">
-							<h5 class="card-title">The Classic</h5>
-							<p class="card-text">
-								Some quick example text to build on the card title and make up the bulk of the card's content.
+					<div className="card">
+						<img src={classic} className="card-img-top img-thumbnail" alt="classic pizza" />
+						<div className="card-body">
+							<h5 className="card-title">The Classic</h5>
+							<p className="card-text">
+								Not much to say about this. You can never go wrong with a classic pepperoni pizza.
 							</p>
 							<Link to="order/The Classic/1" className="btn btn-primary">
 								Order Now
@@ -50,12 +52,12 @@ export default function Home({ activePage, changeActivePage }) {
 					</div>
 				</div>
 				<div className="col">
-					<div class="card">
-						<img src={veg} class="card-img-top img-thumbnail" alt="Veggie" />
-						<div class="card-body">
-							<h5 class="card-title">The Vegetarian</h5>
-							<p class="card-text">
-								Some quick example text to build on the card title and make up the bulk of the card's content.
+					<div className="card">
+						<img src={veg} className="card-img-top img-thumbnail" alt="Veggie" />
+						<div className="card-body">
+							<h5 className="card-title">The Vegetarian</h5>
+							<p className="card-text">
+								In case you don't want meat. Yes, pineapple, but please ask for it without.
 							</p>
 							<Link to="order/The Vegetarian/4" className="btn btn-primary">
 								Order Now
